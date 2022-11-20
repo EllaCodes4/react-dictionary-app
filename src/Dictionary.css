@@ -8,7 +8,12 @@
 
 .Dictionary .word {
   font-weight: 700;
-  font-size: 20px;
+  font-size: 40px;
+  font-family: "Playfair Display", serif;
+}
+
+.Dictionary .partOfSpeech {
+  font-size: 18px;
 }
 
 .Dictionary .translation {
@@ -16,7 +21,24 @@
   font-weight: 600;
 }
 
+.Dictionary .wordDetails {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+  font-family: "Roboto", sans-serif;
+}
+
+.Dictionary .heading {
+  font-weight: 900;
+}
+
 .Dictionary .definition {
+  font-weight: 300;
+}
+
+.Dictionary .sentence {
   font-style: italic;
   font-weight: 200;
+  font-family: "Source Serif Pro", serif;
 }

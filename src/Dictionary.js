@@ -20,7 +20,7 @@ export default function Dictionary() {
   );
 
   return (
-    <div className="Dictionary rounded">
+    <div className="Dictionary">
       <div className="container p-4">
         {searchForm}
         <img
@@ -28,9 +28,13 @@ export default function Dictionary() {
           src="https://cdn.vox-cdn.com/thumbor/D-k171UxzsdFtISjXDHm6kpPW0Y=/0x0:1018x629/920x613/filters:focal(428x234:590x396):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/50822579/5510506796_dff8c07b64_b.0.0.jpg"
           alt="dictionary"
         ></img>
-        <div className="word">
+        <div className="word mt-3">
           DICTIONARY (noun)
-          <a href="/">Translate</a>
+          <small>
+            <a href="/" className="translation text-light ps-2">
+              Translate
+            </a>
+          </small>
         </div>
         <ul className="definition">
           <li>Student-Friendly Definition here</li>

@@ -4,7 +4,7 @@ import "./Dictionary.css";
 export default function Dictionary() {
   let searchForm = (
     <form>
-      <div className="row">
+      <div className="row mt-1">
         <div className="col-8">
           <input
             type="search"

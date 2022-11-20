@@ -19,8 +19,16 @@ export default function Dictionary(props) {
     });
   }
 
+  function search() {
+    const apiKey = "bdac9283-8578-4642-99c0-7e27017b0568";
+    let apiUrl = `https://www.dictionaryapi.com/api/v3/references/ithesaurus/json/${keyword}?key=${apiKey}`;
+
+    axios.get(apiUrl).then(handleResponse);
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
+    search();
   }
 
   function updateKeyword(event) {

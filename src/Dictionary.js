@@ -2,10 +2,17 @@ import React, { useState } from "react";
 import "./Dictionary.css";
 import axios from "axios";
 import SynonymList from "./SynonymList";
+import Photo from "./Photo";
 
 export default function Dictionary(props) {
   const [keyword, setKeyword] = useState(props.defaultKeyword);
   const [dictionaryData, setDictionaryData] = useState({});
+  const [photo, setPhoto] = useState(null);
+
+  function handlePexelsResponse(response) {
+    console.log(response);
+    setPhoto(response.data.photos);
+  }
 
   function handleResponse(response) {
     console.log(response.data[0]);
@@ -25,6 +32,12 @@ export default function Dictionary(props) {
     let apiUrl = `https://www.dictionaryapi.com/api/v3/references/ithesaurus/json/${keyword}?key=${apiKey}`;
 
     axios.get(apiUrl).then(handleResponse);
+
+    const pexelsApiKey =
+      "563492ad6f91700001000001dcdedaeb55b5462c9236bf470837114d";
+    let pexelsApiUrl = `https://api.pexels.com/v1/search?query=${keyword}`;
+    let headers = { Authorization: `Bearer ${pexelsApiKey}` };
+    axios.get(pexelsApiUrl, { headers: headers }).then(handlePexelsResponse);
   }
 
   function handleSubmit(event) {
@@ -70,11 +83,8 @@ export default function Dictionary(props) {
             </small>
           </div>
           <div className="pronunciaton">/wərd/ </div>
-          <img
-            className="img-fluid rounded mt-3"
-            src="https://cdn.vox-cdn.com/thumbor/D-k171UxzsdFtISjXDHm6kpPW0Y=/0x0:1018x629/920x613/filters:focal(428x234:590x396):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/50822579/5510506796_dff8c07b64_b.0.0.jpg"
-            alt="dictionary"
-          ></img>
+
+          <Photo photo={photo} />
 
           <div className="heading mt-5 mb-2">
             DEFINITION
@@ -122,5 +132,11 @@ export default function Dictionary(props) {
     let apiUrl = `https://www.dictionaryapi.com/api/v3/references/ithesaurus/json/${keyword}?key=${apiKey}`;
 
     axios.get(apiUrl).then(handleResponse);
+
+    const pexelsApiKey =
+      "563492ad6f91700001000001dcdedaeb55b5462c9236bf470837114d";
+    let pexelsApiUrl = `https://api.pexels.com/v1/search?query=${keyword}`;
+    let headers = { Authorization: `Bearer ${pexelsApiKey}` };
+    axios.get(pexelsApiUrl, { headers: headers }).then(handlePexelsResponse);
   }
 }

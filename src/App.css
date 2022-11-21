@@ -1,3 +1,16 @@
 .App {
   font-family: "Source Serif Pro", serif;
 }
+
+.App footer {
+  max-width: 350px;
+  margin: 0 auto;
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 5px;
+}
+
+.App footer a {
+  color: #e34b62;
+}

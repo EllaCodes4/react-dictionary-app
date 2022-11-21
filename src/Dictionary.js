@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Dictionary.css";
 import axios from "axios";
+import SynonymList from "./SynonymList";
 
 export default function Dictionary(props) {
   const [keyword, setKeyword] = useState(props.defaultKeyword);
@@ -13,9 +14,9 @@ export default function Dictionary(props) {
       loaded: true,
       word: response.data[0].hwi.hw,
       partOfSpeech: response.data[0].fl,
-      synonyms: response.data[0].meta.syns[0],
-      antonyms: response.data[0].meta.ants[0],
-      definition: response.data[0].shortdef[0],
+      synonyms: response.data[0].meta.syns,
+      antonyms: response.data[0].meta.ants,
+      definition: response.data[0].shortdef,
     });
   }
 
@@ -74,30 +75,45 @@ export default function Dictionary(props) {
             src="https://cdn.vox-cdn.com/thumbor/D-k171UxzsdFtISjXDHm6kpPW0Y=/0x0:1018x629/920x613/filters:focal(428x234:590x396):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/50822579/5510506796_dff8c07b64_b.0.0.jpg"
             alt="dictionary"
           ></img>
-          <ul className="wordDetails mt-5">
-            <li className="heading text-uppercase mb-2">Definitions</li>
-            <li className="definition mb-4">{dictionaryData.definition}</li>
-          </ul>
+
+          <div className="heading mt-5 mb-2">
+            DEFINITION
+            {dictionaryData.definition.map(function (definitions, index) {
+              return (
+                <div className="text" key={index}>
+                  {index + 1}. {definitions}
+                </div>
+              );
+            })}
+          </div>
 
           <div className="row">
             <div className="col-6">
-              <ul className="wordDetails mt-3">
-                <li className="heading text-uppercase mb-2">Synonyms</li>
-                <li className="text mb-4">{dictionaryData.synonyms}</li>
-              </ul>
+              <div className="heading mt-3 mb-2">SYNONYMS</div>
+              {dictionaryData.synonyms.map(function (synonyms, index) {
+                return (
+                  <ul className="text p-0 m-0" key={index}>
+                    <SynonymList synonyms={synonyms} />
+                  </ul>
+                );
+              })}
             </div>
             <div className="col-6">
-              <ul className="wordDetails mt-3">
-                <li className="heading text-uppercase mb-2">Antonyms</li>
-                <li className="text mb-4">{dictionaryData.antonyms}</li>
-              </ul>
+              <div className="heading mt-3 mb-2">ANTONYMS</div>
+              {dictionaryData.antonyms.map(function (antonyms, index) {
+                return (
+                  <ul className="p-0 m-0 text" key={index}>
+                    <li>{antonyms}</li>
+                  </ul>
+                );
+              })}
             </div>
           </div>
 
-          <ul className="wordDetails mt-3">
-            <li className="heading text-uppercase mb-2">Sentence</li>
-            <li className="sentence mb-4">{dictionaryData.sentence}</li>
-          </ul>
+          <div className="heading mt-3 mb-2">
+            SENTENCE
+            <p className="sentence mb-4">{dictionaryData.sentence}</p>
+          </div>
         </div>
       </div>
     );

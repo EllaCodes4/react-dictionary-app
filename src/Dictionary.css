@@ -1,6 +1,6 @@
 .Dictionary {
   max-width: 350px;
-  margin: 50px auto;
+  margin: 50px auto 20px;
   background: #e34b62;
   color: white;
   border-radius: 34px;
@@ -21,20 +21,16 @@
   font-weight: 600;
 }
 
-.Dictionary .wordDetails {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  font-size: 14px;
-  font-family: "Roboto", sans-serif;
-}
-
 .Dictionary .heading {
   font-weight: 900;
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
 }
 
-.Dictionary .definition {
+.Dictionary .text {
   font-weight: 300;
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
 }
 
 .Dictionary .sentence {

@@ -1,18 +1,18 @@
 import React from "react";
 
-export default function Photo(props) {
-  if (props.photo) {
+export default function Photos(props) {
+  if (props.photos) {
     return (
-      <div className="Photo">
+      <div className="Photos">
         <div className="row mt-4">
-          {props.photo.map(function (photo, index) {
+          {props.photos.map(function (photos, index) {
             if (index < 4) {
               return (
                 <div className="col-6 p-1" key={index}>
                   <img
-                    src={photo.src.landscape}
+                    src={photos.src.landscape}
                     className="img-fluid"
-                    alt={photo.alt}
+                    alt={photos.alt}
                   />
                 </div>
               );

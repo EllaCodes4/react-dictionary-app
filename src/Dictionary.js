@@ -3,6 +3,7 @@ import "./Dictionary.css";
 import axios from "axios";
 import Photos from "./Photos";
 import Results from "./Results";
+import WordPronunciation from "./WordPronunciation";
 
 export default function Dictionary(props) {
   const [keyword, setKeyword] = useState(props.defaultKeyword);
@@ -62,6 +63,7 @@ export default function Dictionary(props) {
       <div className="Dictionary">
         <div className="container p-4">
           {searchForm}
+          <WordPronunciation results={results} />
           <Photos photos={photos} />
           <Results results={results} />
         </div>

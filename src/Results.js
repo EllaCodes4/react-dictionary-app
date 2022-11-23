@@ -6,7 +6,6 @@ export default function Results(props) {
 
   return (
     <div className="Results">
-      <div className="heading mt-5 mb-2">DEFINITION</div>
       {props.results.meanings.map(function (meanings, index) {
         return (
           <div className="text" key={index}>

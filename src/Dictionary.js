@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import "./Dictionary.css";
 import axios from "axios";
 import Definitions from "./Definitions";
+import Photo from "./Photo";
+import Word from "./Word";
+import Synonyms from "./Synonyms";
 
 export default function Dictionary(props) {
   const [keyword, setKeyword] = useState(props.defaultKeyword);
@@ -52,7 +55,15 @@ export default function Dictionary(props) {
       <div className="Dictionary">
         <div className="container p-4">
           {searchForm}
+          <Word word={results.hwi.hw} />
+          <Photo />
           <Definitions definitions={results.shortdef} />
+          <div className="row">
+            <div className="col-6">
+              <Synonyms synonyms={results.meta.syns} />
+            </div>
+            <div className="col-6">Antonymns</div>
+          </div>
         </div>
       </div>
     );

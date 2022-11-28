@@ -5,6 +5,7 @@ import Definitions from "./Definitions";
 import Photo from "./Photo";
 import Word from "./Word";
 import Synonyms from "./Synonyms";
+import Antonyms from "./Antonyms";
 
 export default function Dictionary(props) {
   const [keyword, setKeyword] = useState(props.defaultKeyword);
@@ -62,7 +63,9 @@ export default function Dictionary(props) {
             <div className="col-6">
               <Synonyms synonyms={results.meta.syns} />
             </div>
-            <div className="col-6">Antonymns</div>
+            <div className="col-6">
+              <Antonyms antonyms={results.meta.ants} />
+            </div>
           </div>
         </div>
       </div>

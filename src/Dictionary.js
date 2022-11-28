@@ -1,34 +1,23 @@
 import React, { useState } from "react";
 import "./Dictionary.css";
 import axios from "axios";
-import Photos from "./Photos";
-import Results from "./Results";
-import WordPronunciation from "./WordPronunciation";
+import Definitions from "./Definitions";
 
 export default function Dictionary(props) {
   const [keyword, setKeyword] = useState(props.defaultKeyword);
   const [results, setResults] = useState({});
-  const [photos, setPhotos] = useState(props.defaultKeyword);
   const [loaded, setLoaded] = useState(false);
 
-  function handlePexelsResponse(response) {
-    setPhotos(response.data.photos);
+  function handleDictionaryResponse(response) {
+    console.log(response.data[0]);
+    setResults(response.data[0]);
     setLoaded(true);
   }
 
-  function handleDictionaryResponse(response) {
-    setResults(response.data[0]);
-  }
-
   function search() {
-    let apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${keyword}`;
+    const apiKey = "bdac9283-8578-4642-99c0-7e27017b0568";
+    let apiUrl = `https://www.dictionaryapi.com/api/v3/references/ithesaurus/json/${keyword}?key=${apiKey}`;
     axios.get(apiUrl).then(handleDictionaryResponse);
-
-    const pexelsApiKey =
-      "563492ad6f91700001000001dcdedaeb55b5462c9236bf470837114d";
-    let pexelsApiUrl = `https://api.pexels.com/v1/search?query=${keyword}`;
-    let headers = { Authorization: `Bearer ${pexelsApiKey}` };
-    axios.get(pexelsApiUrl, { headers: headers }).then(handlePexelsResponse);
   }
 
   function handleSubmit(event) {
@@ -63,20 +52,13 @@ export default function Dictionary(props) {
       <div className="Dictionary">
         <div className="container p-4">
           {searchForm}
-          <WordPronunciation results={results} />
-          <Photos photos={photos} />
-          <Results results={results} />
+          <Definitions definitions={results.shortdef} />
         </div>
       </div>
     );
   } else {
-    let apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${keyword}`;
+    const apiKey = "bdac9283-8578-4642-99c0-7e27017b0568";
+    let apiUrl = `https://www.dictionaryapi.com/api/v3/references/ithesaurus/json/${keyword}?key=${apiKey}`;
     axios.get(apiUrl).then(handleDictionaryResponse);
-
-    const pexelsApiKey =
-      "563492ad6f91700001000001dcdedaeb55b5462c9236bf470837114d";
-    let pexelsApiUrl = `https://api.pexels.com/v1/search?query=${keyword}`;
-    let headers = { Authorization: `Bearer ${pexelsApiKey}` };
-    axios.get(pexelsApiUrl, { headers: headers }).then(handlePexelsResponse);
   }
 }

@@ -1,11 +1,31 @@
 import React from "react";
+import "./Word.css";
 
 export default function Word(props) {
-  console.log(props.audio);
   return (
-    <div className="Word">
-      <div className="word mt-4">{props.word}</div>
-      {props.pronunciation[0].mw}
+    <div className="Word mt-3">
+      <span className="word">{props.word}</span>{" "}
+      <div>/{props.pronunciation[0].mw}/</div>
+      <div className="translation text-light mt-4">
+        TRADUCCIÓN (EN ESPAÑOL):{" "}
+        <span>
+          {props.translation.map(function (translations, index) {
+            if (index > 2) {
+              return (
+                <span className="text fst-italic" key={index}>
+                  {translations},{" "}
+                </span>
+              );
+            } else {
+              return (
+                <span className="text fst-italic" key={index}>
+                  {translations}{" "}
+                </span>
+              );
+            }
+          })}
+        </span>
+      </div>
     </div>
   );
 }

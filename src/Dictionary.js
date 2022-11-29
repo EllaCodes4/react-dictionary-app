@@ -66,7 +66,11 @@ export default function Dictionary(props) {
       <div className="Dictionary">
         <div className="container p-4">
           {searchForm}
-          <Word word={results.hwi.hw} pronunciation={spanishResults.hwi.prs} />
+          <Word
+            word={results.hwi.hw}
+            pronunciation={spanishResults.hwi.prs}
+            translation={spanishResults.shortdef}
+          />
           <Photo />
           <Definitions
             definitions={results.shortdef}

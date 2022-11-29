@@ -1,0 +1,13 @@
+.Word .word {
+  font-weight: 700;
+  font-size: 40px;
+  font-family: "Playfair Display", serif;
+}
+
+.Word .translation {
+  font-weight: 900;
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+}
+
+

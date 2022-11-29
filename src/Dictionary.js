@@ -12,6 +12,7 @@ export default function Dictionary(props) {
   const [keyword, setKeyword] = useState(props.defaultKeyword);
   const [results, setResults] = useState({});
   const [loaded, setLoaded] = useState(false);
+  const [spanishResults, setSpanishResults] = useState({});
 
   function handleDictionaryResponse(response) {
     console.log(response.data[0]);
@@ -19,10 +20,18 @@ export default function Dictionary(props) {
     setLoaded(true);
   }
 
+  function handleSpanishEnglishDictionaryResponse(response) {
+    console.log(response.data[0]);
+    setSpanishResults(response.data[0]);
+  }
+
   function search() {
     const apiKey = "bdac9283-8578-4642-99c0-7e27017b0568";
     let apiUrl = `https://www.dictionaryapi.com/api/v3/references/ithesaurus/json/${keyword}?key=${apiKey}`;
     axios.get(apiUrl).then(handleDictionaryResponse);
+
+    let spanishApiUrl = `https://dictionaryapi.com/api/v3/references/spanish/json/${keyword}?key=3fbb5308-5430-4677-8d63-e5672307dcc8`;
+    axios.get(spanishApiUrl).then(handleSpanishEnglishDictionaryResponse);
   }
 
   function handleSubmit(event) {
@@ -57,9 +66,12 @@ export default function Dictionary(props) {
       <div className="Dictionary">
         <div className="container p-4">
           {searchForm}
-          <Word word={results.hwi.hw} />
+          <Word word={results.hwi.hw} pronunciation={spanishResults.hwi.prs} />
           <Photo />
-          <Definitions definitions={results.shortdef} partOfSpeech={results.fl}/>
+          <Definitions
+            definitions={results.shortdef}
+            partOfSpeech={results.fl}
+          />
           <div className="row">
             <div className="col-6">
               <Synonyms synonyms={results.meta.syns} />
@@ -76,5 +88,8 @@ export default function Dictionary(props) {
     const apiKey = "bdac9283-8578-4642-99c0-7e27017b0568";
     let apiUrl = `https://www.dictionaryapi.com/api/v3/references/ithesaurus/json/${keyword}?key=${apiKey}`;
     axios.get(apiUrl).then(handleDictionaryResponse);
+
+    let spanishApiUrl = `https://dictionaryapi.com/api/v3/references/spanish/json/${keyword}?key=3fbb5308-5430-4677-8d63-e5672307dcc8`;
+    axios.get(spanishApiUrl).then(handleSpanishEnglishDictionaryResponse);
   }
 }

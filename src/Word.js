@@ -1,5 +1,11 @@
 import React from "react";
 
 export default function Word(props) {
-  return <div className="word mt-4">{props.word}</div>;
+  console.log(props.audio);
+  return (
+    <div className="Word">
+      <div className="word mt-4">{props.word}</div>
+      {props.pronunciation[0].mw}
+    </div>
+  );
 }

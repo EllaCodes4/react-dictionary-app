@@ -1,0 +1,11 @@
+.Definitions .heading {
+  font-weight: 900;
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
+}
+
+.Definitions .text {
+  font-weight: 300;
+  font-family: "Roboto", sans-serif;
+  font-size: 13px;
+}

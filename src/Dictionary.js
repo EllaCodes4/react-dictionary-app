@@ -36,7 +36,7 @@ export default function Dictionary(props) {
 
   let searchForm = (
     <form onSubmit={handleSubmit}>
-      <div className="row mt-1">
+      <div className="row mt-3">
         <div className="col-8">
           <input
             type="search"
@@ -59,7 +59,7 @@ export default function Dictionary(props) {
           {searchForm}
           <Word word={results.hwi.hw} />
           <Photo />
-          <Definitions definitions={results.shortdef} />
+          <Definitions definitions={results.shortdef} partOfSpeech={results.fl}/>
           <div className="row">
             <div className="col-6">
               <Synonyms synonyms={results.meta.syns} />

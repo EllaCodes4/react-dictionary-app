@@ -13,6 +13,7 @@ export default function Dictionary(props) {
   const [results, setResults] = useState({});
   const [loaded, setLoaded] = useState(false);
   const [spanishResults, setSpanishResults] = useState({});
+  const [photo, setPhoto] = useState("");
 
   function handleDictionaryResponse(response) {
     console.log(response.data[0]);
@@ -25,6 +26,10 @@ export default function Dictionary(props) {
     setSpanishResults(response.data[0]);
   }
 
+  function handlePexelsResponse(response) {
+    setPhoto(response.data.photos);
+  }
+
   function search() {
     const apiKey = "bdac9283-8578-4642-99c0-7e27017b0568";
     let apiUrl = `https://www.dictionaryapi.com/api/v3/references/ithesaurus/json/${keyword}?key=${apiKey}`;
@@ -32,6 +37,12 @@ export default function Dictionary(props) {
 
     let spanishApiUrl = `https://dictionaryapi.com/api/v3/references/spanish/json/${keyword}?key=3fbb5308-5430-4677-8d63-e5672307dcc8`;
     axios.get(spanishApiUrl).then(handleSpanishEnglishDictionaryResponse);
+
+    const pexelsApiKey =
+      "563492ad6f91700001000001dcdedaeb55b5462c9236bf470837114d";
+    let pexelsApiUrl = `https://api.pexels.com/v1/search?query=${keyword}`;
+    let headers = { Authorization: `Bearer ${pexelsApiKey}` };
+    axios.get(pexelsApiUrl, { headers: headers }).then(handlePexelsResponse);
   }
 
   function handleSubmit(event) {
@@ -67,11 +78,11 @@ export default function Dictionary(props) {
         <div className="container p-4">
           {searchForm}
           <Word
-            word={results.hwi.hw}
+            word={spanishResults.hwi.hw}
             pronunciation={spanishResults.hwi.prs}
             translation={spanishResults.shortdef}
           />
-          <Photo />
+          <Photo photo={photo} />
           <Definitions
             definitions={results.shortdef}
             partOfSpeech={results.fl}
@@ -95,5 +106,11 @@ export default function Dictionary(props) {
 
     let spanishApiUrl = `https://dictionaryapi.com/api/v3/references/spanish/json/${keyword}?key=3fbb5308-5430-4677-8d63-e5672307dcc8`;
     axios.get(spanishApiUrl).then(handleSpanishEnglishDictionaryResponse);
+
+    const pexelsApiKey =
+      "563492ad6f91700001000001dcdedaeb55b5462c9236bf470837114d";
+    let pexelsApiUrl = `https://api.pexels.com/v1/search?query=${keyword}`;
+    let headers = { Authorization: `Bearer ${pexelsApiKey}` };
+    axios.get(pexelsApiUrl, { headers: headers }).then(handlePexelsResponse);
   }
 }

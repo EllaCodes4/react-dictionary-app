@@ -1,6 +1,6 @@
 .Dictionary {
   max-width: 350px;
-  margin: 50px auto 20px;
+  margin: 30px auto 20px;
   background: #e34b62;
   color: white;
   border-radius: 34px;
@@ -17,5 +17,3 @@
   font-family: "Roboto", sans-serif;
   font-size: 13px;
 }
-
-

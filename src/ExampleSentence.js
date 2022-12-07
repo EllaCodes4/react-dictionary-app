@@ -1,12 +1,13 @@
 import React from "react";
+import "./ExampleSentence.css";
 
 export default function ExampleSentence(props) {
   return (
-    <div className="Example sentence text">
-      {props.example.dt[1].map(function (vis, index) {
+    <div className="ExampleSentence">
+      {props.example.dt[1].map(function (visualIllustration, index) {
         return (
           <div key={index} className="mb-3">
-            {vis[0].t}
+            {visualIllustration[0].t}
           </div>
         );
       })}

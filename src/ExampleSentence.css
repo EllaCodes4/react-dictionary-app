@@ -1,3 +1,6 @@
-.ExampleSentence .example {
-  text-transform: capitalize;
+.ExampleSentence {
+  font-style: italic;
+  font-weight: 300;
+  font-family: "Source Serif Pro", serif;
+  font-size: 13px;
 }

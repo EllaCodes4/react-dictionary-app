@@ -1,20 +1,21 @@
 import React from "react";
 import ExampleSentence from "./ExampleSentence";
+import "./Sentence.css";
 
 export default function Sentence(props) {
   return (
     <div className="Sentence">
       <div className="heading mt-5">EXAMPLE SENTENCE</div>
-      {props.sentence.map(function (def, index) {
+      {props.sentence.map(function (defintion, index) {
         return (
           <div key={index}>
-            {def.sseq.map(function (sseq, index) {
+            {defintion.sseq.map(function (senseSequence, index) {
               return (
                 <div key={index}>
-                  {sseq.map(function (sseq, index) {
+                  {senseSequence.map(function (sense, index) {
                     return (
                       <div key={index}>
-                        <ExampleSentence example={sseq[1]} />
+                        <ExampleSentence example={sense[1]} />
                       </div>
                     );
                   })}
